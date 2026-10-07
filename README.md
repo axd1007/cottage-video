@@ -17,16 +17,19 @@ One camera connected to the local network:
 - Docker
 - Git / GitHub
 
-## Development plan
+## Project structure
 
-1. Verify camera network access from WSL
-2. Identify camera streaming protocol
-3. Connect camera stream
-4. Deploy Frigate
-5. Configure recording
-6. Configure object detection
-7. Configure zones and masks
-8. Add notifications
-9. Add custom Python/FastAPI logic
-10. Add face recognition
-11. Add additional cameras
+```text
+cottage-video/
+├── .env
+├── .env.example
+├── .gitignore
+├── .venv/
+├── pyproject.toml
+├── README.md
+├── config/
+├── docs/
+├── scripts/
+├── src/
+└── tests/
+

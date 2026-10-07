@@ -1,0 +1,24 @@
+[project]
+name = "cottage-video"
+version = "0.1.0"
+description = "Self-hosted video surveillance system for a private house"
+requires-python = ">=3.11"
+dependencies = [
+    "python-dotenv",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "ruff",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
