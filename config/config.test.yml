@@ -1,0 +1,58 @@
+mqtt:
+  enabled: false
+
+detectors:
+  onnx:
+    type: onnx
+
+model:
+  model_type: yolo-generic
+  width: 320
+  height: 320
+  input_tensor: nchw
+  input_dtype: float
+  path: /config/model_cache/yolov9-t-320.onnx
+  labelmap_path: /labelmap/coco-80.txt
+
+ffmpeg:
+  hwaccel_args: preset-nvidia
+  output_args:
+    record: preset-record-generic-audio-aac  # аудио камеры PCM A-law -> AAC
+
+go2rtc:
+  streams:
+    cottage: ffmpeg:/media/test/test1.mp4#video=copy#audio=copy#input=file
+
+cameras:
+  cottage:
+    ffmpeg:
+      inputs:
+        - path: rtsp://127.0.0.1:8554/cottage
+          input_args: preset-rtsp-restream
+          roles:
+            - detect
+            - record
+    detect:
+      enabled: true
+      fps: 5
+    objects:
+      track:
+        - person
+        - car
+        - truck
+
+# Тест: ~1 час хранения, жёсткого лимита по размеру в Frigate нет
+record:
+  enabled: true
+  continuous:
+    days: 0.042
+  motion:
+    days: 0
+  alerts:
+    retain:
+      days: 0.042
+  detections:
+    retain:
+      days: 0.042
+
+version: 0.18-0

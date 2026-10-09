@@ -20,3 +20,9 @@ data/
 # OS
 .DS_Store
 Thumbs.db
+
+# Frigate
+storage/
+config/model_cache/
+config/*.db*
+config/.*
